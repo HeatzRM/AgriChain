@@ -40,21 +40,12 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
-        login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
-        return redirect(next_page)
-    return render_template('login.html', title='Sign In', test="test asdasdasds")
-    #return render_template('login.html', title='Sign In', form=form)
+    if request.method == "GET":
+       return render_template('login.html', title='Access Wallet')
+    if request.method == "POST":
+        #gets the private key to be derived
+       return request.form['privateKey']
+
 
 @app.route('/logout')
 def logout():
@@ -98,3 +89,21 @@ def edit_profile():
         form.username.data = current_user.username
         form.email.data = current_user.email
     return render_template('edit_profile.html', title='Edit Profile', form=form)
+
+@app.route('/marketplace')
+def marketplace():
+    #get items through database or something
+    items = [
+        {'item_name': 'Rice',
+        'price': '20',
+        'quantity': '50',
+        'seller_address':'0xf67a6388F62aD660505cDd63e0558CF1f68c0d9a'},
+        {'item_name': 'Wheat',
+        'price': '30',
+        'quantity': '40',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
+        {'item_name': 'Mango',
+        'price': '10',
+        'quantity': '10',
+        'seller_address':'0xDE73bf7Bc4D099A166B7b8711E3Daa80B4458B5c'}]
+    return render_template('marketplace.html', items=items)
