@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header header-filter" data-parallax="true" style="background-image: url({{url_for('static', filename='bg3.jpg') }})">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title">AgriChain</h1>
+        <h4>Empowering cooperatives with Blockchain technology</h4>
+        <br>
+        <a href="https://www.youtube.com" target="_blank" class="btn btn-danger btn-raised btn-lg">
+          <i class="fa fa-play"></i> Watch video
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main main-raised">
+  <div class="container">
+    <div class="section text-center">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="title">AgriCoin</h2>
+          <h5 class="description">Our farmers have no lack for technology, experience, or expertise, and most definitely not hard work. But why do most farmers still remain poor? It’s a simple question with a complicated answer, but certainly one factor in that complex puzzle is financing. Today, we aim to provide a solution to that problem with our AgriChain technology.</h5>
+        </div>
+      </div>
+      <div class="features">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="info">
+              <div class="icon icon-info">
+                <i class="material-icons">accessibility_new</i>
+              </div>
+              <h4 class="info-title">Accessibility</h4>
+              <p>Bring financial services and assistance where they are needed the most.</p>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-danger">
+                  <i class="material-icons">fingerprint</i>
+                </div>
+                <h4 class="info-title">Security</h4>
+                <p>Provides a highly secure platform to process and record transactions. It tracks the transfer of ownership and other sensitive data in a distributed public ledger that can be viewed by anyone, but not modified.</p>
+              </div>
+            </div>
+
+          <div class="col-md-4">
+            <div class="info">
+              <div class="icon icon-success">
+                <i class="material-icons">language</i>
+              </div>
+              <h4 class="info-title">Scalability</h4>
+              <p>Your cooperative may be local but the reach of your network is global.</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+   
+
+				
+{% endblock %} 

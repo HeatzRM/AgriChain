@@ -1,0 +1,128 @@
+<html lang = "en">
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Import JQuery-->
+    <script type=text/javascript src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <link href="{{url_for('static',filename='css/material-kit.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+
+    {% if title %}
+    <title>{{ title }} - Application</title>
+    {% else %}
+    <title>System</title>
+    {% endif %}
+
+  </head>
+
+  <body class="login-page sidebar-collapse">
+
+    {% block navbar %}
+      <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+
+          <div class="container">
+            <div class="navbar-translate">
+              <a class="navbar-brand" href="#">
+              AgriCoin </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+  
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                  <a class="nav-link" href=" {{ url_for('register')}}" onclick="scrollToDownload()">
+                    <i class="material-icons">create</i> Create Wallet
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+                      <i class="material-icons">account_balance_wallet</i> Your Wallet
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+                        <i class="material-icons">shopping_cart</i>Marketplace
+                      </a>
+                    </li>
+
+
+                <li class="nav-item">
+                  <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Twitter">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Like us on Facebook">
+                    <i class="fa fa-facebook-square"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
+                    <i class="fa fa-instagram"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav> 
+    {% endblock %}
+        
+
+    {% block content %}
+    
+    {% endblock %}
+ 
+<!--asdasds-->
+    {% block footer%}
+      <footer class="footer">
+        <div class="container">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="{{url_for('index')}}">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/HeatzRM/AgriChain">
+                  Github
+                </a>
+              </li>
+            </ul>
+          </nav>
+      </footer>
+      {% endblock %}
+
+
+      <script type=text/javascript src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script type=text/javascript src="{{url_for('static', filename='js/popper.min.js') }}"></script>
+      <script type=text/javascript src="{{url_for('static', filename='js/bootstrap-material-design.min.js') }}"></script>
+      <script type=text/javascript src="{{url_for('static', filename='js/bootstrap-datetimepicker.js') }}"></script>
+      <script type=text/javascript src="{{url_for('static', filename='js/nouislider.min.js') }}"></script>
+      <script type=text/javascript src="{{url_for('static', filename='js/jquery.sharrre.js') }}"></script>
+      <script type=text/javascript src="{{url_for('static', filename='js/material-kit.js') }}"></script>
+
+
+
+</body>
+
+
+</html>

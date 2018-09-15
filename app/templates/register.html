@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header header-filter" style="background-image: url({{url_for('static', filename='bg3.jpg') }}); background-size: cover; background-position: top center;">
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-md-10 ml-auto mr-auto">
+            <div class="card card-login">
+              <form class="form" method="" action="">
+                <div class="card-header card-header-primary text-center">
+                  <h4 class="card-title">Create your Wallet</h4>
+                </div>
+                <p class="description text-center">Enter a world of innovation</p>
+                <div class="card-body">
+                  
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Name...">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                            <i class="material-icons">location_on</i>
+                            </span>
+                        </div>
+                    <input type="text" class="form-control" placeholder="Address...">
+                    </div>
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">calendar_today</i>
+                      </span>
+                    </div>
+                    <input type="date" class="form-control" placeholder="Birthday...">
+                  </div>
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">contact_phone</i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Contact Info...">
+                  </div>
+
+                 
+                </div>
+                <div class="footer text-center">
+                  <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
