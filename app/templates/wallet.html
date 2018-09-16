@@ -1,80 +1,51 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Wallet Generator</title>
+	<style>
+		#addressQr{
+			width: 173px;
+			height: 175px;
+			position: fixed;
+			top: 102px;
+			left: 159px;
+		}
 
-{% block content %}
+		#privKeyQr{
+			width: 173px;
+			height: 175px;
+			position: fixed;
+			top: 102px;
+			left: 593px;
+		}
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url({{url_for('static', filename='bg3.jpg') }})">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h1 class="title">Wallet</h1>
-        <br>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="main main-raised">
-  <div class="container">
-    
-    <div class="section text-center">
-        <h3 class="description text-center">Account Address: {{address}}</h3>
-        <h3 class="description text-center">Account Balance: {{account_balance}}</h3>            
-      <div class="row">
-            
+		#bg{
+			z-index: -1;
+			position: fixed;
+		}
 
-            <div class="col-md-8 ml-auto mr-auto">
-                  Send Coins
-            </div>
-            <div class="col-md-8 ml-auto mr-auto">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">vpn_key</i>
-                      </span>
-                    </div>
-                    <input name='addressTo' type="text" class="form-control" placeholder="Address To...">
-                  </div>
-            </div>
+		#address{
+			position: absolute;
+			top: 320px;
+			left: 160px;
+			width: 370px;
+		}
 
-            <div class="col-md-8 ml-auto mr-auto">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">attach_money</i>
-                      </span>
-                    </div>
-                    <input name='Amount' type="text" class="form-control" placeholder="Amount to Send...">
-                  </div>
-            </div>
+		#privKey{
+			position: absolute;
+			top: 372px;
+			left: 160px;
+			width: 562px;
+		}
+	</style>
+</head>
+<body>
+	<img src="./img/wallet.jpg" id="bg">
+	<img src="./img/address.png" id="addressQr">
+	<img src="./img/privKey.png" id="privKeyQr">
 
-            <div class="col-md-8 ml-auto mr-auto">
-                <input value="Send" type="button" class="btn btn-success">
-            </div>
-
-            <div class="col-md-8 ml-auto mr-auto">
-                <h3>Transaction History</h3>
-                {% for transaction in transactions %}
-               
-                <div class="container">
-                    <div class="card" >
-                        <div class="card-body">        
-                            <h6 class="card-subtitle mb-2 text-muted">TX No: {{transaction.transaction_no}}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">Address From: {{transaction.address_from}}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">Address To: {{transaction.address_to}}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">Amount: {{transaction.amount}}</h6>
-                  </div>
-                  </div>
-                </div>
-
-                {% endfor %}                
-            </div>
-
-
-          </div>
-      
-        </div>
-      </div>
-    </div>
-   
-
-				
-{% endblock %} 
+	<input type="text" id="address" value="">
+	<input type="text" id="privKey" vale="">
+</body>
+</html>

@@ -1,7 +1,24 @@
 from ecdsa import SigningKey, SECP256k1
 import sha3
+import qrcode
+import socket
+from threading import Thread
 
-def checksum_encode(addr_str): # Takes a hex (string) address as input
+socket = socket.socket()
+
+try:
+    serverIP = '127.0.0.1'
+    port = 3000
+    socket.connect((serverIP, port))
+    socket.send("Wallet Generator".encode('ascii'))
+
+    print("Connected to server")
+except Exception:
+    print("Can't connect to server...")
+
+
+
+def checksum_encode(addr_str):
     keccak = sha3.keccak_256()
     out = ''
     addr = addr_str.lower().replace('0x', '')
@@ -14,33 +31,77 @@ def checksum_encode(addr_str): # Takes a hex (string) address as input
             out += c
     return '0x' + out
 
-keccak = sha3.keccak_256()
 
-#priv = SigningKey.generate(curve=SECP256k1)
-priv = SigningKey.generate(curve=SECP256k1)
-print(SigningKey.generate(curve=SECP256k1))
-#print(type(priv))
-#print(priv.to_string())
-#priv = sha3.keccak_256(("John" + "10/12/2001").encode('utf8')).hexdigest()
-pub = priv.get_verifying_key().to_string()
+def generateWallet():
+    keccak = sha3.keccak_256()
 
-keccak.update(pub)
-print('--------------------------------')
-print(pub)
-address = keccak.hexdigest()[24:]
+    priv = SigningKey.generate(curve=SECP256k1)
+    pub = priv.get_verifying_key().to_string()
 
-def test(addrstr):
-    assert(addrstr == checksum_encode(addrstr))
+    keccak.update(pub)
 
-test('0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed')
-test('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359')
-test('0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB')
-test('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb')
-test('0x7aA3a964CC5B0a76550F549FC30923e5c14EDA84')
+    address = keccak.hexdigest()[24:]
 
-print("Private key:", priv.to_string().hex())
-print("Public key: ", pub.hex())
-print("Address:    ", checksum_encode(address))
+    def test(addrstr):
+        assert(addrstr == checksum_encode(addrstr))
+
+    print("Private key:", priv.to_string().hex())
+    print("Public key: ", pub.hex())
+    print("Address:    ", checksum_encode(address))
+
+    walletAddress = checksum_encode(address)
+
+    # save QR code and other inputs=====================================
+    # Address
+    addr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=0,
+    )
+    addr.add_data(checksum_encode(address))
+    addr.make(fit=True)
+
+    addrImg = addr.make_image(fill_color="black", back_color="white")
+
+    addrImg.save('./templates/img/address.png')
+
+    # Private Key
+    priveKey = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=0,
+    )
+    priveKey.add_data(priv.to_string().hex())
+    priveKey.make(fit=True)
+
+    priveKeyImg = priveKey.make_image(fill_color="black", back_color="white")
+
+    priveKeyImg.save('./templates/img/privKey.png')
+
+    return walletAddress
 
 
-print(checksum_encode("John" + "10/12/2001"))
+# Save the text keys=========================================================
+
+
+# Send to blockchain
+def sendToChain(addr):
+    socket.send(addr.encode('ascii'))
+
+
+while True:
+    cmd = input("\n'G' to generate Wallet ||'B' to get wallet balance || 'S' to send: ")
+    if cmd == 'G' or cmd == 'g':
+        sendToChain('**wallet'+generateWallet())
+    if cmd == 'B' or cmd == 'b':
+        _addr = input("Enter or Scan Address: ")
+        sendToChain(f'**balance{_addr}')
+        print(f"Current balance: {socket.recv(1024).decode('ascii')}")
+    if cmd == 'S' or cmd == 's':
+        addrFrom = input("Sender's address: ")
+        addrTo = input("Receiver's address: ")
+        amount = input("Enter amount: ")
+        sendToChain(f'**sendCoins{addrFrom},{addrTo},{amount}')
+        print("Transaction Successful!")
