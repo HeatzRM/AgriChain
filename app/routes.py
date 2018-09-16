@@ -44,7 +44,8 @@ def login():
        return render_template('login.html', title='Access Wallet')
     if request.method == "POST":
         #gets the private key to be derived
-       return request.form['privateKey']
+       #return render_template('wallet.html', address=request.form['privateKey'], account_balance=0) 
+       return wallet(request.form['privateKey'])
 
 
 @app.route('/logout')
@@ -105,5 +106,60 @@ def marketplace():
         {'item_name': 'Mango',
         'price': '10',
         'quantity': '10',
-        'seller_address':'0xDE73bf7Bc4D099A166B7b8711E3Daa80B4458B5c'}]
+        'seller_address':'0xDE73bf7Bc4D099A166B7b8711E3Daa80B4458B5c'},
+        {'item_name': 'Coconut',
+        'price': '300',
+        'quantity': '140',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
+        {'item_name': 'Banna',
+        'price': '50',
+        'quantity': '20',
+        'seller_address':'0xDE73bf7Bc4D099A166B7b8711E3Daa80B4458B5c'},
+        {'item_name': 'Wheat',
+        'price': '30',
+        'quantity': '40',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
+        {'item_name': 'Rice',
+        'price': '300',
+        'quantity': '700',
+        'seller_address':'0xf67a6388F62aD660505cDd63e0558CF1f68c0d9a'},
+        {'item_name': 'Tomato',
+        'price': '20',
+        'quantity': '60',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
+        {'item_name': 'Wheat',
+        'price': '30',
+        'quantity': '40',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},]
+
     return render_template('marketplace.html', items=items)
+
+@app.route('/wallet')
+def wallet(address_from):
+    transactions = [
+        {"transaction_no" : 1,
+        "address_from" : address_from,
+        "address_to" : "0x504D76514A4eea2DcAF34fb5f528D997665674a7",
+        "amount": 10},
+        {"transaction_no" : 2,
+        "address_from" : address_from,
+        "address_to" : "0xF244106080e54cA451368f2Bde3eefEe14C3d04a",
+        "amount": 10},
+        {"transaction_no" : 3,
+        "address_from" : address_from,
+        "address_to" : "0x504D76514A4eea2DcAF34fb5f528D997665674a7",
+        "amount": 10},
+        {"transaction_no" : 4,
+        "address_from" : address_from,
+        "address_to" : "0xF244106080e54cA451368f2Bde3eefEe14C3d04a",
+        "amount": 10},
+        {"transaction_no" : 5,
+        "address_from" : address_from,
+        "address_to" : "0x1D19478C8CFf983D8b00ffAe15bd3747Bc76cEdD",
+        "amount": 10},
+        {"transaction_no" : 6,
+        "address_from" : address_from,
+        "address_to" : "0xF244106080e54cA451368f2Bde3eefEe14C3d04a",
+        "amount": 10},
+    ]
+    return render_template('wallet.html', transactions=transactions, address=address_from, account_balance=10)

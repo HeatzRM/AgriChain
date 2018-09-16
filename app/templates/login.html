@@ -9,17 +9,6 @@
               <form class="form" method="POST" action="{{ url_for('login') }}">
                 <div class="card-header card-header-primary text-center">
                   <h4 class="card-title">Enter Private Key</h4>
-                  <div class="social-line">
-                    <a href="#pablo" class="btn btn-just-icon btn-link">
-                      <i class="fa fa-facebook-square"></i>
-                    </a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link">
-                      <i class="fa fa-twitter"></i>
-                    </a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link">
-                      <i class="fa fa-google-plus"></i>
-                    </a>
-                  </div>
                 </div>
                 <p class="description text-center">Enter a world of innovation</p>
                 <br>
@@ -30,8 +19,10 @@
                         <i class="material-icons">vpn_key</i>
                       </span>
                     </div>
+                    
                     <input name='privateKey' type="password" class="form-control" placeholder="Private Key...">
                   </div>
+                  
                 <div class="footer text-center">
                     <input type="submit" value="Submit" class="btn btn-primary">
 
