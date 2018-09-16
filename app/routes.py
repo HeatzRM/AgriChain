@@ -1,11 +1,3 @@
-import pickle
-import json
-import os
-import threading
-from threading import Thread
-from datetime import datetime, timedelta
-from base64 import b64encode
-from uuid import uuid4
 from config import Config
 from operator import attrgetter
 from sqlalchemy.orm import sessionmaker
@@ -111,7 +103,7 @@ def marketplace():
         'price': '300',
         'quantity': '140',
         'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
-        {'item_name': 'Banna',
+        {'item_name': 'Banana',
         'price': '50',
         'quantity': '20',
         'seller_address':'0xDE73bf7Bc4D099A166B7b8711E3Daa80B4458B5c'},
@@ -134,32 +126,39 @@ def marketplace():
 
     return render_template('marketplace.html', items=items)
 
+@app.route('/product/<item>')
+def product(item):
+    print(item)
+    return render_template('product.html', item=item)
+
 @app.route('/wallet')
-def wallet(address_from):
+def wallet(private_key):
+    #derive the address by the private key
+    address="0xe106213eC2Fc640Bd534d85C27E67A9A24D22c37"
     transactions = [
         {"transaction_no" : 1,
-        "address_from" : address_from,
+        "address_from" : address,
         "address_to" : "0x504D76514A4eea2DcAF34fb5f528D997665674a7",
         "amount": 10},
         {"transaction_no" : 2,
-        "address_from" : address_from,
+        "address_from" : address,
         "address_to" : "0xF244106080e54cA451368f2Bde3eefEe14C3d04a",
         "amount": 10},
         {"transaction_no" : 3,
-        "address_from" : address_from,
+        "address_from" : address,
         "address_to" : "0x504D76514A4eea2DcAF34fb5f528D997665674a7",
         "amount": 10},
         {"transaction_no" : 4,
-        "address_from" : address_from,
+        "address_from" : address,
         "address_to" : "0xF244106080e54cA451368f2Bde3eefEe14C3d04a",
         "amount": 10},
         {"transaction_no" : 5,
-        "address_from" : address_from,
+        "address_from" : address,
         "address_to" : "0x1D19478C8CFf983D8b00ffAe15bd3747Bc76cEdD",
         "amount": 10},
         {"transaction_no" : 6,
-        "address_from" : address_from,
+        "address_from" : address,
         "address_to" : "0xF244106080e54cA451368f2Bde3eefEe14C3d04a",
         "amount": 10},
     ]
-    return render_template('wallet.html', transactions=transactions, address=address_from, account_balance=10)
+    return render_template('wallet.html', transactions=transactions, private_key=private_key, account_balance=10, address=address)

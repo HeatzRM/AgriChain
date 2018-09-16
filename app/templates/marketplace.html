@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-md-6">
         <h1 class="title">AgriChain Market</h1>
-        <h4>Buy and Sell Goods, Services and Coins</h4>
+        <h4>Buy and Sell Goods, Services, and Coins</h4>
       </div>
     </div>
   </div>
@@ -19,14 +19,14 @@
         <div class="row">
             
             {% for item in items %}	
-            <div class="card" style="width: 20rem;">
+            <div class="card" style="width: 17rem;">
                 <div class="card-body">
                     <h4 class="card-title">{{item.item_name}}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Seller Address</h6>
                     <h6 class="card-subtitle mb-2 text-muted">{{item.seller_address}}</h6>
                     <h5 class="card-subtitle mb-3 text-muted">Price: ${{item.price}}</h3>
                     <h5 class="card-subtitle mb-3 text-muted">Quantity: {{item.quantity}}</h3>
-                    <a href="#0" class="btn btn-success">Buy This</a>
+                    <a href="{{ url_for('product' , item='Item Name' ) }}" class="btn btn-success">Buy This</a>
                 </div>
             </div>
             {% endfor %}
