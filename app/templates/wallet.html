@@ -56,10 +56,14 @@
                 {% for transaction in transactions %}
                
                 <div class="container">
-                  TX No: {{transaction.transaction_no}}
-                  Address From: {{transaction.address_from}}
-                  Address To: {{transaction.address_to}}
-                  Amount: {{transaction.amount}}
+                    <div class="card" >
+                        <div class="card-body">        
+                            <h6 class="card-subtitle mb-2 text-muted">TX No: {{transaction.transaction_no}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Address From: {{transaction.address_from}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Address To: {{transaction.address_to}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Amount: {{transaction.amount}}</h6>
+                  </div>
+                  </div>
                 </div>
 
                 {% endfor %}                
