@@ -119,6 +119,18 @@ def marketplace():
         'price': '20',
         'quantity': '60',
         'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
+        {'item_name': 'Pig',
+        'price': '2000',
+        'quantity': '2',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
+        {'item_name': 'Cow',
+        'price': '3000',
+        'quantity': '2',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
+        {'item_name': 'Piglets',
+        'price': '1800',
+        'quantity': '5',
+        'seller_address':'0x4158d0DE0DAAF01FA022DB154183361CC9d2923A'},
         {'item_name': 'Wheat',
         'price': '30',
         'quantity': '40',
@@ -159,6 +171,6 @@ def wallet(private_key):
         {"transaction_no" : 6,
         "address_from" : address,
         "address_to" : "0xF244106080e54cA451368f2Bde3eefEe14C3d04a",
-        "amount": 10},
+        "amount": 10}
     ]
     return render_template('wallet.html', transactions=transactions, private_key=private_key, account_balance=10, address=address)
